@@ -1,0 +1,35 @@
+{
+  "name": "curso-node",
+  "version": "1.0.0",
+  "description": "el curso de node",
+  "keywords": [
+    "curso",
+    "node",
+    "nodejs",
+    "roweshil"
+  ],
+  "homepage": "https://github.com/Roweshil/node-proyect#readme",
+  "bugs": {
+    "url": "https://github.com/Roweshil/node-proyect/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Roweshil/node-proyect.git"
+  },
+  "license": "ISC",
+  "author": "roweshil",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "picocolors": "1.1.1"
+  },
+  "devDependencies": {
+    "standard": "17.1.2"
+  },
+  "eslintConfig": {
+    "extends": "standard"
+  }
+}
