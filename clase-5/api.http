@@ -2,8 +2,7 @@
 GET http://localhost:1234/movies
 
 ### Recuperar una pelicula por ID
-GET http://localhost:1234/movies/241bf55d-b649-4109-af7c-0e6890ded3fc
-
+GET http://localhost:1234/movies/ae13b740-df71-11f0-8694-581122bb7062
 ### Recuperar todas las peliculas de un genero
 GET http://localhost:1234/movies?genre=drama
 
@@ -13,7 +12,6 @@ POST http://localhost:1234/movies
 Content-Type: application/json
 
 {
-    "id": "dcdd0fad-a94c-4810-8acc-5f108d3b18c3",
     "title": "The Redemption",
     "year": 1994,
     "director": "Frank Darabont",
@@ -28,9 +26,7 @@ Content-Type: application/json
 
 
 ### Borrar una pelicula
-DELETE http://localhost:1234/movies/ad183b76-fd36-4234-b573-ed7e5f7c5db6
-
-### Actualizar una pelicula 
+DELETE http://localhost:1234/movies/adaa66d7-df71-11f0-8694-581122bb7062
 
 PATCH http://localhost:1234/movies/241bf55d-b649-4109-af7c-0e6890ded3fc
 Content-Type: application/json
