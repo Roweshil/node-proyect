@@ -20,18 +20,19 @@ Content-Type: application/json
     "genre": [
       "Drama"
     ],
-    "rate": 9.3
+    "rate": 9.3.
 }
 
 
 
 ### Borrar una pelicula
-DELETE http://localhost:1234/movies/adaa66d7-df71-11f0-8694-581122bb7062
+DELETE http://localhost:1234/movies/671f132e-deb7-11f0-b07f-581122bb7062
 
-PATCH http://localhost:1234/movies/241bf55d-b649-4109-af7c-0e6890ded3fc
+### Actualizar una pelicula con PUT
+PATCH http://localhost:1234/movies/671f132e-deb7-11f0-b07f-581122bb7062
 Content-Type: application/json
 
 {
   "title": "The Godfather Updated",
-  "year": 1993
+  "year": 2001
 }

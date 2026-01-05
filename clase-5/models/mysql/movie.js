@@ -112,6 +112,22 @@ export class MovieModel {
   }
 
   static async update ({ id, input }) {
+    const fields = []
+    const values = []
 
-  }
+    for (const [key, value] of Object.entries(input)) {
+      fields.push(`${key} = ?`)
+      values.push(value)
+    }
+
+    if (fields.length === 0) return false
+
+    const [result] = await connection.execute(
+      `UPDATE movies SET ${fields.join(', ')}
+      WHERE id = UUID_TO_BIN(?)`,
+      [...values, id]
+    )
+
+    return result.affectedRows > 0
+}
 }
