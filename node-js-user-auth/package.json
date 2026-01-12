@@ -13,7 +13,8 @@
   "type": "module",
   "dependencies": {
     "db-local": "^3.1.0",
-    "express": "^5.2.1"
+    "express": "^5.2.1",
+    "zod": "^4.3.5"
   },
   "devDependencies": {
     "standard": "^17.1.2"
