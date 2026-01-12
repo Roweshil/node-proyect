@@ -9,7 +9,7 @@ app.get('/', (req, res) => {
 })
 
 app.post('/login', (req, res) => {
-  res.send('Login endpoint')
+  res.json({ message: 'Login endpoint' })
 })
 
 app.post('/register', (req, res) => {
