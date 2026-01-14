@@ -13,28 +13,25 @@ const User = Schema('User', {
 })
 
 export class UserRepository {
-    static create (username, password) {
+    static async create (username, password) {
         //1. Validaciones
-        if(typeof username !== 'string') throw new TypeError('Username must be a string')
-        if(username.length < 3) throw new Error('Username must be at least 3 characters long')
-
-        if(typeof password !== 'string') throw new TypeError('Password must be a string')
-        if(password.length < 6) throw new Error('Password must be at least 6 characters long')
+        Validations.username(username)
+        Validations.password(password)
     
 
         //2. ASEGURAR QUE EL USUARIO NO EXISTE
-        const user =User.findOne({username})
+        const user = User.findOne({username})
         if(user) throw new Error('Username already exists')
 
         //3. CREAR EL id
         const id = crypto.randomUUID()
 
-        const hashedPassword = bcrypt.hashSync(password, SALT_ROUNDS)
+        const hashedPassword = await bcrypt.hash(password, SALT_ROUNDS) // -> bloquea el thread principal
 
         User.create({
             _id: id, 
-            username, 
-            password
+            username,
+            password: hashedPassword
         }).save()
 
         console.log({id})
@@ -42,5 +39,30 @@ export class UserRepository {
         return id
     }
 
-    static login (username, password) {}
+    static async login (username, password) {
+        Validations.username(username)
+        Validations.password(password)
+
+        const user = User.findOne({username})
+        if(!user) throw new Error('Invalid username or password')
+
+        const isPasswordValid = await bcrypt.compare(password, user.password)
+        if(!isPasswordValid) throw new Error('Invalid username or password')
+
+            const {password: _, ...userWithoutPassword} = user
+        return userWithoutPassword
+    }
+
+    
+}
+
+class Validations{
+        static username(username) {
+            if(typeof username !== 'string') throw new TypeError('Username must be a string')
+            if(username.length < 3) throw new Error('Username must be at least 3 characters long')
+        }
+        static password(password) {
+            if(typeof password !== 'string') throw new TypeError('Password must be a string')
+            if(password.length < 6) throw new Error('Password must be at least 6 characters long')
+        }  
 }
