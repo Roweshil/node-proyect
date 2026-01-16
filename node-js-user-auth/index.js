@@ -13,12 +13,16 @@ app.use(express.json())
 app.use(cookieParser())
 
 app.get('/', (req, res) => {
-  res.render('example', { name: 'Rowe'})
+  res.render('index')
+})
+
+app.get('/protected', (req, res) => {
+  res.render('protected')
 })
 
 app.post('/login', async (req, res) => {
   const { username, password } = req.body // cuerpo de la peticion
-
+  console.log(req.body)
   try {
     const user = await UserRepository.login(username, password)
     const token = jwt.sign(
@@ -63,7 +67,7 @@ app.post('/protected', (req, res) => {
 
   try {
     const data = jwt.verify(token, SECRET_JWT_KEY)
-    res.render('Protected endpoint', data)
+    res.render('protected', data)
   } catch(error) {
     res.status(401).send('Invalid token.')
   }
